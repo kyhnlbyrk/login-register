@@ -1,0 +1,38 @@
+@import '../../../styles/global-colors.scss';
+
+.input--nonstyled {
+  font-family: inherit;
+  font-size: 16px;
+  border: none;
+  outline: none;
+  height: 38px;
+  width: 100%;
+  max-width: 100%;
+  padding: 0;
+  color: $white;
+  background-color: transparent;
+
+  &:autofill {
+    -webkit-transition: 'color 9999s ease-out, background-color 9999s ease-out';
+    transition: 'color 9999s ease-out, background-color 9999s ease-out';
+    transition-delay: 9999s;
+    -webkit-transition-delay: 9999s;
+  }
+
+  &::-webkit-contacts-auto-fill-button {
+    visibility: hidden;
+    display: none !important;
+    pointer-events: none;
+    position: absolute;
+    right: 0;
+  }
+
+  &:-webkit-autofill,
+  &:-webkit-autofill:hover,
+  &:-webkit-autofill:focus {
+    -webkit-transition: 'color 9999s ease-out, background-color 9999s ease-out';
+    transition: 'color 9999s ease-out, background-color 9999s ease-out';
+    transition-delay: 9999s;
+    -webkit-transition-delay: 9999s;
+  }
+}

@@ -1,0 +1,31 @@
+@import '../../../styles/global-colors.scss';
+
+.input-message {
+  font-size: 12px;
+  line-height: 1.5;
+  animation: appear .5s ease;
+  font-family: 'Hind', sans-serif;
+  margin-top: 3px;
+
+  &__error {
+    color: $secondary-color;
+  }
+
+  &__warning {
+    color: darkgoldenrod;
+  }
+
+  &__success {
+   color: $primary-color;
+ }
+}
+
+@keyframes appear {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}

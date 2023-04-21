@@ -1,0 +1,112 @@
+@import '../../../styles/global-colors.scss';
+
+.input-wrapper {
+  width: 100%;
+  position: relative;
+
+  &__bordered {
+    position: relative;
+    &:focus::after,
+    &:focus-within::after,
+    &:focus-visible::after {
+      content: '';
+      position: absolute;
+      top: -1px;
+      right: 0px;
+      bottom: 0px;
+      left: 0px;
+      border-bottom: 1px solid $primary-color;
+      z-index: 10;
+      height: 100%;
+      width: 100%;
+    }
+  }
+
+  &__focused {
+    &::after {
+      content: '';
+      position: absolute;
+      top: -1px;
+      right: 0px;
+      bottom: 0px;
+      left: 0px;
+      border-bottom: 1px solid $primary-color;
+      z-index: 10;
+      height: 100%;
+      width: 100%;
+    }
+  }
+
+  &__input {
+    font-family: 'Hind', sans-serif;
+    transition-property: border-color;
+    transition-duration: 0.15s;
+    width: 100%;
+    text-align: left;
+    display: flex;
+    align-items: center;
+    position: relative;
+    cursor: text;
+    border-bottom: 1px solid $border-color;
+    height: 45px;
+
+    &__error {
+     border-color: $secondary-color;
+    }
+
+    &__success {
+     border-color: $secondary-color;
+    }
+
+    &__warning {
+     border-color: darkgoldenrod;
+    }
+  }
+
+  &__disabled {
+    cursor: not-allowed;
+    pointer-events: none;
+    background-color: $white;
+  }
+
+  &__label {
+    color: $white;
+    font-size: 16px;
+    position: absolute;
+    letter-spacing: 0;
+    z-index: 10;
+    transition-duration: 0.1s, 0.1s;
+    transition-property: opacity, top;
+    top: 30%;
+    cursor: text;
+    &__focused {
+      font-size: 12px;
+      top: -5px;
+    }
+
+    &__error {
+     color: $secondary-color;
+    }
+
+    &__success {
+     color: $secondary-color;
+    }
+
+    &__warning {
+     color: darkgoldenrod;
+    }
+  }
+  &__placeholder {
+    display: inline-flex;
+    align-items: center;
+    color: $white;
+    opacity: 0.7;
+    letter-spacing: 0;
+    position: absolute;
+    pointer-events: none;
+    font-size: 16px;
+    top: 50%;
+    height: 96%;
+    transform: translateY(-50%);
+  }
+}

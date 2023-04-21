@@ -15,6 +15,7 @@ const Tab: FC<TabProps> & { Panel: React.FC<TabPanelProps> } = props => {
   const [activeTab, setActiveTab] = useState<number>(0);
 
   const handleTabClick = (index: number) => {
+    console.log('burdaaaaa');
     setActiveTab(index);
   };
 
@@ -27,16 +28,16 @@ const Tab: FC<TabProps> & { Panel: React.FC<TabPanelProps> } = props => {
   };
 
   return (
-    <div className="tab" onKeyDown={handleKeyDown} tabIndex={0} data-testid={dataTestId}>
-      <div className="tab__header">
+    <nav className="tab" onKeyDown={handleKeyDown} tabIndex={0} data-testid={dataTestId}>
+      <ul className="tab__header">
         {React.Children.map(children, (child: any, index) => (
-          <button key={child.props.title} className={`tab__header__item ${index === activeTab ? 'active' : ''}`} onClick={() => handleTabClick(index)}>
-            {child.props.title}
-          </button>
+          <li key={child.props.title} className={`tab__header__item ${index === activeTab ? 'active' : ''}`}>
+            <button onClick={() => handleTabClick(index)}>{child.props.title}</button>
+          </li>
         ))}
-      </div>
+      </ul>
       <div className={`tab__content`}>{children && children[activeTab].props.children}</div>
-    </div>
+    </nav>
   );
 };
 

@@ -1,5 +1,5 @@
 import React, { useState, FC } from 'react';
-import './Tab.styles.scss';
+import Styles from './Tab.module.scss';
 import { TabPanelProps, TabProps } from './Tab.types';
 import Panel from './Panel';
 
@@ -28,10 +28,10 @@ const Tab: FC<TabProps> & { Panel: React.FC<TabPanelProps> } = props => {
   };
 
   return (
-    <nav className="tab" onKeyDown={handleKeyDown} tabIndex={0} data-testid={dataTestId}>
-      <ul className="tab__header">
+    <nav className={Styles['tab']} onKeyDown={handleKeyDown} tabIndex={0} data-testid={dataTestId}>
+      <ul className={Styles['tab__header']}>
         {React.Children.map(children, (child: any, index) => (
-          <li key={child.props.title} className={`tab__header__item ${index === activeTab ? 'active' : ''}`}>
+          <li key={child.props.title} className={[Styles['tab__header__item'], index === activeTab ? Styles['active'] : ''].join(' ')}>
             <button onClick={() => handleTabClick(index)}>{child.props.title}</button>
           </li>
         ))}

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { InputProps } from './Input.types';
 import NonStyledInput from '../../atoms/NonStyledInput';
-import './Input.styles.scss';
+import Styles from './Input.module.scss';
 import InputMessage from '../../atoms/InputMessage';
 
 const Input = React.forwardRef<HTMLInputElement, InputProps>(props => {
@@ -98,25 +98,27 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(props => {
   const $focused = focused || hasFocused;
   const showPlaceholder = (!hasValue && !label) || ($focused && !hasValue);
   return (
-    <div className="input-wrapper">
-      <div className={['input-wrapper__bordered', $focused ? 'input-wrapper__focused' : ''].join(' ')}>
-        <div className={['input-wrapper__input', disabled ? 'input-wrapper__disabled' : '', `input-wrapper__input__${status}`].join(' ')}>
-          <label htmlFor={id} className={['input-wrapper__label', $focused || hasValue ? 'input-wrapper__label__focused' : '', `input-wrapper__label__${status}`].join(' ')}>
+    <div className={Styles["input-wrapper"]}>
+      <div className={[Styles['input-wrapper__bordered'], $focused ? Styles['input-wrapper__focused'] : ''].join(' ')}>
+        <div className={[Styles['input-wrapper__input'], disabled ? Styles['input-wrapper__disabled'] : '', Styles[`input-wrapper__input__${status}`]].join(' ')}>
+          <label htmlFor={id} className={[Styles['input-wrapper__label'], $focused || hasValue ? Styles['input-wrapper__label__focused'] : '', Styles[`input-wrapper__label__${status}`]].join(' ')}>
             {label}
           </label>
           {showPlaceholder && (
-            <div className="input-wrapper__placeholder">
+            <div className={Styles["input-wrapper__placeholder"]}>
               <span>{placeholder}</span>
             </div>
           )}
-          <div style={{ width: '100%' }} ref={ref}>
+          <div className={Styles["input-wrapper__wrapper"]} ref={ref}>
             <NonStyledInput id={id} focused={focused} disabled={disabled} {...rest} />
           </div>
         </div>
       </div>
-      {message && 
-       <InputMessage dataTestId={dataTestId} status={status}>{message}</InputMessage>
-      }
+      {message && (
+        <InputMessage dataTestId={dataTestId} status={status}>
+          {message}
+        </InputMessage>
+      )}
     </div>
   );
 });

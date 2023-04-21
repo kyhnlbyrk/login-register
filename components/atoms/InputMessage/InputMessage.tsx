@@ -1,12 +1,12 @@
 import React from 'react';
 import { InputMessageProps } from './InputMessage.types';
-import './InputMessage.styles.scss';
+import Styles from './InputMessage.module.scss';
 
 const InputMessage: React.FunctionComponent<InputMessageProps> = props => {
   const { children, status, dataTestId } = props;
 
   return (
-    <div data-testid={`${dataTestId}-message`} className={['input-message', `input-message__${status}`].join(' ')}>
+    <div data-testid={`${dataTestId}-message`} className={[Styles['input-message'], Styles[`input-message__${status}`]].join(' ')}>
       {children}
     </div>
   );

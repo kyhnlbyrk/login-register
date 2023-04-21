@@ -1,8 +1,12 @@
-@import '../../../styles/global-colors.scss';
-
+@import '/public/variables.scss';
 .input-wrapper {
   width: 100%;
   position: relative;
+
+  &__wrapper {
+    width: 100%;
+    margin-top: 12px;
+  }
 
   &__bordered {
     position: relative;
@@ -11,10 +15,7 @@
     &:focus-visible::after {
       content: '';
       position: absolute;
-      top: -1px;
-      right: 0px;
       bottom: 0px;
-      left: 0px;
       border-bottom: 1px solid $primary-color;
       z-index: 10;
       height: 100%;
@@ -26,10 +27,7 @@
     &::after {
       content: '';
       position: absolute;
-      top: -1px;
-      right: 0px;
       bottom: 0px;
-      left: 0px;
       border-bottom: 1px solid $primary-color;
       z-index: 10;
       height: 100%;
@@ -51,15 +49,15 @@
     height: 45px;
 
     &__error {
-     border-color: $secondary-color;
+      border-color: $secondary-color;
     }
 
     &__success {
-     border-color: $secondary-color;
+      border-color: $secondary-color;
     }
 
     &__warning {
-     border-color: darkgoldenrod;
+      border-color: darkgoldenrod;
     }
   }
 
@@ -81,19 +79,19 @@
     cursor: text;
     &__focused {
       font-size: 12px;
-      top: -5px;
+      top: 2px;
     }
 
     &__error {
-     color: $secondary-color;
+      color: $secondary-color;
     }
 
     &__success {
-     color: $secondary-color;
+      color: $secondary-color;
     }
 
     &__warning {
-     color: darkgoldenrod;
+      color: darkgoldenrod;
     }
   }
   &__placeholder {
@@ -106,6 +104,7 @@
     pointer-events: none;
     font-size: 16px;
     top: 50%;
+    margin-top: 7px;
     height: 96%;
     transform: translateY(-50%);
   }

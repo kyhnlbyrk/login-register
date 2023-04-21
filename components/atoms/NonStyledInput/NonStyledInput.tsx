@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { NonStyledInputProps } from './NonStyledInput.types';
-import './NonStyledInput.styles.scss';
+import Styles from './NonStyledInput.module.scss';
 
 const NonStyledInput = React.forwardRef<HTMLInputElement, NonStyledInputProps>((props, ref) => {
-  return <input className='input--nonstyled' {...props} ref={ref} />;
+  return <input className={Styles['input--nonstyled']} {...props} ref={ref} />;
 });
 
 NonStyledInput.defaultProps = {

@@ -13,7 +13,7 @@ test('should render Button', () => {
 
 test('should render Button correctly', () => {
   render(
-    <Button block dataTestId="button">
+    <Button block disabled dataTestId="button">
       Giriş Yap
     </Button>,
   );

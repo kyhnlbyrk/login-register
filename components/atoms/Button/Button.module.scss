@@ -28,6 +28,12 @@
   width: 100%;
 }
 
+.button--disabled {
+  background-color: gray;
+  opacity: 0.8;
+  cursor: not-allowed;
+}
+
 .button--small {
   font-size: 14px;
   height: 10px 16px;

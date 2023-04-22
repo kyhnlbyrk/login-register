@@ -1,11 +1,11 @@
 import Head from 'next/head';
 import Styles from '../styles/Home.module.scss';
 import Card from '../components/atoms/Card';
-import LoginForm from '../components/molecules/LoginForm';
 import Tab from '../components/molecules/Tab';
-import RegisterForm from '../components/molecules/RegisterForm';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useTranslation } from 'next-i18next';
+import LoginFormManager from '../components/molecules/FormManagers/LoginFormManager';
+import RegisterFormManager from '../components/molecules/FormManagers/RegisterFormManager';
 
 export default function Home() {
   const { t } = useTranslation('common');
@@ -22,10 +22,10 @@ export default function Home() {
         <Card>
           <Tab>
             <Tab.Panel title={t('LOGIN')}>
-              <LoginForm />
+              <LoginFormManager />
             </Tab.Panel>
             <Tab.Panel title={t('REGISTER')}>
-              <RegisterForm />
+              <RegisterFormManager />
             </Tab.Panel>
           </Tab>
         </Card>
@@ -33,7 +33,7 @@ export default function Home() {
     </>
   );
 }
-
+ //@ts-ignore
 export async function getStaticProps({ locale }) {
   return {
     props: {

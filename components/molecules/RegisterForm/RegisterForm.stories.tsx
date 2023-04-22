@@ -9,7 +9,7 @@ export default {
 export const Default = () => {
   return (
     <div style={{ maxWidth: '1140px', margin: 'auto' }}>
-      <RegisterForm />
+      <RegisterForm onSubmit={val => console.log(val)} />
     </div>
   );
 };

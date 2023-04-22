@@ -9,7 +9,7 @@ export default {
 export const Default = () => {
   return (
     <div style={{ maxWidth: '1140px', margin: 'auto' }}>
-      <LoginForm />
+      <LoginForm onSubmit={val => console.log('val = ', val)} />
     </div>
   );
 };

@@ -15,7 +15,6 @@ const Tab: FC<TabProps> & { Panel: React.FC<TabPanelProps> } = props => {
   const [activeTab, setActiveTab] = useState<number>(0);
 
   const handleTabClick = (index: number) => {
-    console.log('burdaaaaa');
     setActiveTab(index);
   };
 
@@ -36,6 +35,7 @@ const Tab: FC<TabProps> & { Panel: React.FC<TabPanelProps> } = props => {
           </li>
         ))}
       </ul>
+      {/*@ts-ignore*/}
       <div className={`tab__content`}>{children && children[activeTab].props.children}</div>
     </nav>
   );

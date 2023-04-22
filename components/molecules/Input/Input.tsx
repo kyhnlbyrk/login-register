@@ -23,6 +23,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>((props, _ref) => {
   const observer = typeof window !== 'undefined' ? new MutationObserver(observerCallback) : null;
 
   React.useEffect(() => {
+    //@ts-ignore
     const focusables = (ref.current.getElementsByTagName('input') || ref.current.getElementsByTagName('textarea')) as HTMLCollectionOf<HTMLInputElement>;
     const firstFocusable = focusables.length > 0 ? focusables[0] : null;
 

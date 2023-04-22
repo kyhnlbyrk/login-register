@@ -5,7 +5,7 @@ import * as yup from 'yup';
 import Input from '../Input';
 import Button from '../../atoms/Button';
 import Styles from './RegisterForm.module.scss';
-import { InputControls } from './RegisterForm.types';
+import { InputControls, RegisterFormProps } from './RegisterForm.types';
 
 const schema = yup
   .object()
@@ -16,7 +16,8 @@ const schema = yup
   })
   .required();
 
-const LoginForm: React.FunctionComponent = props => {
+const RegisterForm: React.FunctionComponent<RegisterFormProps> = props => {
+  const { onSubmit, loading } = props;
   const formMethods = useForm<InputControls>({
     resolver: yupResolver(schema),
     mode: 'onBlur',
@@ -29,25 +30,13 @@ const LoginForm: React.FunctionComponent = props => {
     formState: { errors },
   } = formMethods;
 
-  const onSubmit: SubmitHandler<InputControls> = async data => {
-    /*clearMessages();
-   if (isSubmitting) return;
-   try {
-     const loginResponse = await Login(data);
-     const { token } = loginResponse.data;
-     const getUserResponse = await GetUser(token);
-     login(getUserResponse.data, token);
-     if (reload) {
-       window.location.reload();
-     }
-   } catch (err) {
-     setError(err.response.data.message || err.response.data.userMessage);
-   }*/
+  const _onSubmit: SubmitHandler<InputControls> = data => {
+    onSubmit(data);
   };
 
   return (
     <FormProvider {...formMethods}>
-      <form className={Styles['wrapper']} onSubmit={handleSubmit(onSubmit)}>
+      <form className={Styles['wrapper']} onSubmit={handleSubmit(_onSubmit)}>
         <Input
           placeholder="İsim Soyisim giriniz"
           id="name"
@@ -76,7 +65,7 @@ const LoginForm: React.FunctionComponent = props => {
           {...register('password')}
         />
 
-        <Button color="secondary" type="submit" block>
+        <Button disabled={loading} color="secondary" type="submit" block>
           Üye ol
         </Button>
       </form>
@@ -84,4 +73,4 @@ const LoginForm: React.FunctionComponent = props => {
   );
 };
 
-export default LoginForm;
+export default RegisterForm;

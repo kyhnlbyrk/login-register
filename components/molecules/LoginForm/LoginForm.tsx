@@ -5,7 +5,7 @@ import * as yup from 'yup';
 import Input from '../Input';
 import Button from '../../atoms/Button';
 import Styles from './LoginForm.module.scss';
-import { InputControls } from './LoginForm.types';
+import { InputControls, LoginFormProps } from './LoginForm.types';
 
 const schema = yup
   .object()
@@ -15,7 +15,9 @@ const schema = yup
   })
   .required();
 
-const LoginForm: React.FunctionComponent = props => {
+const LoginForm: React.FunctionComponent<LoginFormProps> = props => {
+  const { onSubmit, loading } = props;
+
   const formMethods = useForm<InputControls>({
     resolver: yupResolver(schema),
     mode: 'onBlur',
@@ -28,45 +30,16 @@ const LoginForm: React.FunctionComponent = props => {
     formState: { errors },
   } = formMethods;
 
-  const onSubmit: SubmitHandler<InputControls> = async data => {
-    console.log('data = ', data);
-    /*clearMessages();
-   if (isSubmitting) return;
-   try {
-     const loginResponse = await Login(data);
-     const { token } = loginResponse.data;
-     const getUserResponse = await GetUser(token);
-     login(getUserResponse.data, token);
-     if (reload) {
-       window.location.reload();
-     }
-   } catch (err) {
-     setError(err.response.data.message || err.response.data.userMessage);
-   }*/
+  const _onSubmit: SubmitHandler<InputControls> = data => {
+    onSubmit(data);
   };
 
   return (
     <FormProvider {...formMethods}>
-      <form className={Styles['wrapper']} onSubmit={handleSubmit(onSubmit)}>
-        <Input
-          id="email"
-          label="E-posta"
-          type="email"
-          message={errors?.email?.message}
-          status={errors?.email ? 'error' : undefined}
-          {...register('email')}
-        />
-
-        <Input
-          id="password"
-          label="Şifre"
-          type="password"
-          message={errors?.password?.message}
-          status={errors?.password ? 'error' : undefined}
-          {...register('password')}
-        />
-
-        <Button type="submit" block>
+      <form className={Styles['wrapper']} onSubmit={handleSubmit(_onSubmit)}>
+        <Input id="email" label="E-posta" type="email" message={errors?.email?.message} status={errors?.email ? 'error' : undefined} {...register('email')} />
+        <Input id="password" label="Şifre" type="password" message={errors?.password?.message} status={errors?.password ? 'error' : undefined} {...register('password')} />
+        <Button disabled={loading} type="submit" block>
           Giriş yap
         </Button>
       </form>

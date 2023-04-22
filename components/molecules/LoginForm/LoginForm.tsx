@@ -1,6 +1,6 @@
 import React from 'react';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { Controller, FormProvider, SubmitHandler, useForm } from 'react-hook-form';
+import { FormProvider, SubmitHandler, useForm } from 'react-hook-form';
 import * as yup from 'yup';
 import Input from '../Input';
 import Button from '../../atoms/Button';
@@ -18,14 +18,18 @@ const schema = yup
 const LoginForm: React.FunctionComponent = props => {
   const formMethods = useForm<InputControls>({
     resolver: yupResolver(schema),
+    mode: 'onBlur',
+    reValidateMode: 'onBlur',
+    ...props,
   });
   const {
-    control,
     handleSubmit,
+    register,
     formState: { errors },
   } = formMethods;
 
   const onSubmit: SubmitHandler<InputControls> = async data => {
+    console.log('data = ', data);
     /*clearMessages();
    if (isSubmitting) return;
    try {
@@ -43,37 +47,25 @@ const LoginForm: React.FunctionComponent = props => {
 
   return (
     <FormProvider {...formMethods}>
-      <form className={Styles["wrapper"]} onSubmit={handleSubmit(onSubmit)}>
-        <Controller
-          name="email"
-          control={control}
-          render={({ field }) => (
-            <Input
-              id="email"
-              data-testid="membership-signin-email-input"
-              label="E-posta"
-              type="email"
-              message={errors?.email?.message}
-              status={errors?.email ? 'error' : undefined}
-              {...field}
-            />
-          )}
+      <form className={Styles['wrapper']} onSubmit={handleSubmit(onSubmit)}>
+        <Input
+          id="email"
+          data-testid="membership-signin-email-input"
+          label="E-posta"
+          type="email"
+          message={errors?.email?.message}
+          status={errors?.email ? 'error' : undefined}
+          {...register('email')}
         />
 
-        <Controller
-          name="password"
-          control={control}
-          render={({ field }) => (
-            <Input
-              id="password"
-              data-testid="membership-signin-password-input"
-              label="Şifre"
-              type="password"
-              message={errors?.password?.message}
-              status={errors?.password ? 'error' : undefined}
-              {...field}
-            />
-          )}
+        <Input
+          id="password"
+          data-testid="membership-signin-password-input"
+          label="Şifre"
+          type="password"
+          message={errors?.password?.message}
+          status={errors?.password ? 'error' : undefined}
+          {...register('password')}
         />
 
         <Button data-testid="membership-signin-submit-button" type="submit" block>

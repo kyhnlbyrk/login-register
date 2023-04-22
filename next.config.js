@@ -1,6 +1,6 @@
 const { DeleteSourceMapsPlugin } = require('webpack-delete-sourcemaps-plugin');
 const { loadEnvConfig } = require('@next/env');
-
+const { i18n } = require('./next-i18next.config');
 // If you want a config only for prod..
 //const prod = process.env.NODE_ENV === "production";
 
@@ -10,6 +10,7 @@ loadEnvConfig(projectDir);
 /** @type {import('next').NextConfig} */
 
 const config = {
+  i18n,
   trailingSlash: true,
   publicRuntimeConfig: {
     processEnv: Object.fromEntries(Object.entries(process.env).filter(([key]) => key.includes('NEXT_PUBLIC_'))),

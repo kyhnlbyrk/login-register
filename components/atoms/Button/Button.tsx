@@ -3,10 +3,14 @@ import { ButtonProps } from './Button.types';
 import Styles from './Button.module.scss';
 
 const Button: React.FunctionComponent<ButtonProps> = props => {
-  const { block, color, children, size, ...rest } = props;
+  const { block, color, children, size, dataTestId, ...rest } = props;
 
   return (
-    <button className={[Styles['button'], Styles[`button--${color}`], block ? Styles['button--block'] : '', Styles[`button--${size}`]].join(' ')} {...rest}>
+    <button
+      data-testid={dataTestId}
+      className={[Styles['button'], Styles[`button--${color}`], block ? Styles['button--block'] : '', Styles[`button--${size}`]].join(' ')}
+      {...rest}
+    >
       {children}
     </button>
   );

@@ -50,7 +50,6 @@ const LoginForm: React.FunctionComponent = props => {
       <form className={Styles['wrapper']} onSubmit={handleSubmit(onSubmit)}>
         <Input
           id="email"
-          data-testid="membership-signin-email-input"
           label="E-posta"
           type="email"
           message={errors?.email?.message}
@@ -60,7 +59,6 @@ const LoginForm: React.FunctionComponent = props => {
 
         <Input
           id="password"
-          data-testid="membership-signin-password-input"
           label="Şifre"
           type="password"
           message={errors?.password?.message}
@@ -68,7 +66,7 @@ const LoginForm: React.FunctionComponent = props => {
           {...register('password')}
         />
 
-        <Button data-testid="membership-signin-submit-button" type="submit" block>
+        <Button type="submit" block>
           Giriş yap
         </Button>
       </form>

@@ -5,4 +5,5 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
  children: ReactNode;
  block?: boolean
  size?: 'small' | 'medium' | 'large'
+ dataTestId?: string | number;
 }
